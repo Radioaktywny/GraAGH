@@ -3,6 +3,7 @@
 #include <list>
 #include <ctime>
 #include <iostream>
+
 const int X_OKNA = 800;
 const int Y_OKNA = 600;
 
@@ -15,19 +16,14 @@ int main()
 
 
 sf::Texture texture;
-if (!texture.loadFromFile("player.png"))
-    return -1;
-sf::Sprite sprite;
-sprite.setTexture(texture);
-// Draw the textured sprite
-window.draw(sprite);
 
 
     sf::Clock stoper;
 int i=0;
     while( okno.isOpen() )
     {stoper.restart();
-        sf::Event event;
+
+        sf::Event event;  //EVENTS
         while( okno.pollEvent( event ) )
         {
             if( event.type == sf::Event::Closed )
@@ -37,7 +33,7 @@ int i=0;
 
 
 
-        } //while
+        } //
         okno.clear();
 
 
