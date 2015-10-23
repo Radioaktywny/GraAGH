@@ -15,7 +15,7 @@ int main()
 
 
 sf::Texture texture;
-if (!texture.loadFromFile("ziom.png"))
+if (!texture.loadFromFile("player.png"))
     return -1;
 sf::Sprite sprite;
 sprite.setTexture(texture);
