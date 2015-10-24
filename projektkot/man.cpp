@@ -14,15 +14,26 @@ class player {
     int y=20;
     int ruch_lewo=0;
     int ruch_prawo=0;
-
+int skok=0;
     sf::CircleShape ksztalt =sf::CircleShape (50,10);
 
     // Fizyka
     void dzialaj(){
-        if(pola[x][y+100]==0)
+        if(pola[x][y+100]==0 &&skok==0)
             y++;
+        else
+        y-=skok*0.3;
+
+
+
+
             x=x+ruch_prawo;
             x=x-ruch_lewo;
+            if(skok>0)skok--;
+
+
+
+
             ksztalt.setPosition(x,y);
         }
 };//Funkcja G³ówna
@@ -74,6 +85,13 @@ int main()
                  gracz1.ruch_prawo = 1;
             if( event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Right )
                  gracz1.ruch_prawo = 0;
+            if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Up)
+                 if(gracz1.skok==0&&pola[gracz1.x][gracz1.y+100]==1)
+                 {
+                     gracz1.skok=37;
+                 }
+
+
         }
         // clear the window with black color
         // end the current frame
@@ -97,7 +115,7 @@ int main()
         window.display();
 
 
-        while(zegar.getElapsedTime().asMilliseconds()<10){}
+        while(zegar.getElapsedTime().asMilliseconds()<7){}
     }
 
     return 0;
