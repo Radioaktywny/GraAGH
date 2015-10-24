@@ -105,9 +105,9 @@ int main()
         {
             // "close requested" event: we close the window
             if (event.type == sf::Event::Closed)
-                window.close();
+                {window.close();return 0;}
             if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape )
-                 window.close();
+                {window.close();return 0;}
             if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Left )
                  gracz1.ruch_lewo=1;
             if( event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Left )
