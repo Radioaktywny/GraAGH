@@ -1,8 +1,7 @@
 #include <SFML/Graphics.hpp>
-
 //Wymiary okna
-const int X_OKNA=800;
-const int Y_OKNA=600;
+const int X_OKNA=1224;
+const int Y_OKNA=816;
 
 int pola[X_OKNA][Y_OKNA];
 
@@ -12,6 +11,7 @@ class player {
     public:
     int x=400;
     int y=20;
+
     int ruch_lewo=0;
     int ruch_prawo=0;
 int skok=0;
@@ -20,10 +20,13 @@ int skok=0;
     // Fizyka
     void dzialaj(){
         if(pola[x][y+100]==0 &&skok==0)
-            y++;
-        else
-        y-=skok*0.3;
+            {
 
+            y=y+1;}
+        else
+     {
+      y-=skok*0.3;
+    }
 
 
 
@@ -39,7 +42,7 @@ int skok=0;
 };//Funkcja G³ówna
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(800, 600,32), "My window");
+    sf::RenderWindow window(sf::VideoMode(X_OKNA, Y_OKNA,32), "My window",sf::Style::Fullscreen);
 
     // Sprajt :D  Mapy
     sf::CircleShape punkt(9,4);
@@ -51,9 +54,19 @@ int main()
             pola[i][j]=0;
 
     for(int i=0;i<X_OKNA;i++)
-        pola[i][560]=1;
-        for(int i=200;i<300;i++)
+        pola[i][Y_OKNA-100]=1;
+
+    for(int i=200;i<300;i++)
             pola[i][200]=1;
+
+
+
+    for(int i=0;i<X_OKNA;i++)
+        pola[i][490]=1;
+    for(int i=600;i<700;i++)
+            pola[i][200]=1;
+
+
 
     for(int i=300;i<450;i++)
         pola[i][400]=1;
