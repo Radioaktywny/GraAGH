@@ -59,9 +59,27 @@ int main()
     for(int i=200;i<300;i++)
             pola[i][200]=1;
 
+    for(int i=0;i<300;i++)
+            pola[i][200]=1;
+
+    for(int i=0;i<470;i++)
+            pola[i][620]=1;
+
+    for(int i=0;i<200;i++)
+            pola[i][500]=1;
 
 
-    for(int i=0;i<X_OKNA;i++)
+
+
+    for(int i=555;i<712;i++)
+            pola[i][330]=1;
+
+    for(int i=820;i<X_OKNA-1;i++)
+            pola[i][200]=1;
+
+
+
+    for(int i=700;i<X_OKNA;i++)
         pola[i][490]=1;
     for(int i=600;i<700;i++)
             pola[i][200]=1;
