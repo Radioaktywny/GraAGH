@@ -12,14 +12,17 @@ class player {
     public:
     int x=400;
     int y=20;
-    int ruch=0;
+    int ruch_lewo=0;
+    int ruch_prawo=0;
+
     sf::CircleShape ksztalt =sf::CircleShape (50,10);
 
     // Fizyka
     void dzialaj(){
         if(pola[x][y+100]==0)
             y++;
-            x=x+ruch;
+            x=x+ruch_prawo;
+            x=x-ruch_lewo;
             ksztalt.setPosition(x,y);
         }
 };//Funkcja G³ówna
@@ -64,13 +67,13 @@ int main()
             if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape )
                  window.close();
             if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Left )
-                 gracz1.ruch=-1;
+                 gracz1.ruch_lewo=1;
             if( event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Left )
-                 gracz1.ruch= 0;
+                 gracz1.ruch_lewo = 0;
             if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Right )
-                 gracz1.ruch= 1;
+                 gracz1.ruch_prawo = 1;
             if( event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Right )
-                 gracz1.ruch= 0;
+                 gracz1.ruch_prawo = 0;
         }
         // clear the window with black color
         // end the current frame
