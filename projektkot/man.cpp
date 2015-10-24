@@ -1,43 +1,91 @@
 #include <SFML/Graphics.hpp>
-#include <cmath>
-#include <list>
-#include <ctime>
-#include <iostream>
 
-const int X_OKNA = 800;
-const int Y_OKNA = 600;
+//Wymiary okna
+const int X_OKNA=800;
+const int Y_OKNA=600;
+
+int pola[X_OKNA][Y_OKNA];
 
 
-using namespace std;
+//Tworzenie postaci
+class player {
+    public:
+    int x=400;
+    int y=20;
+    int ruch;
+    sf::CircleShape ksztalt =sf::CircleShape (50,10);
 
+    // Fizyka
+    void dzialaj(){
+        if(pola[x][y+100]==0)
+            y++;
+            ksztalt.setPosition(x,y);
+        }
+};
+
+//Funkcja G³ówna
 int main()
 {
-    sf::RenderWindow okno( sf::VideoMode( X_OKNA, Y_OKNA ), "kotkotkot" );
+    sf::RenderWindow window(sf::VideoMode(800, 600,32), "My window");
+
+    // Sprajt :D  Mapy
+    sf::CircleShape punkt(9,4);
+    punkt.setFillColor(sf::Color(50,50,50));
+
+    //Tworzenie planszy
+    for(int i=0;i<X_OKNA;i++)
+        for(int j=0;j<Y_OKNA;j++)
+            pola[i][j]=0;
+
+    for(int i=0;i<X_OKNA;i++)
+        pola[i][560]=1;
+        for(int i=200;i<300;i++)
+            pola[i][200]=1;
+
+    for(int i=300;i<450;i++)
+        pola[i][400]=1;
+
+    //Tworzenie gracza
+    player gracz1;
 
 
-sf::Texture texture;
-
-
-    sf::Clock stoper;
-int i=0;
-    while( okno.isOpen() )
-    {stoper.restart();
-
-        sf::Event event;  //EVENTS
-        while( okno.pollEvent( event ) )
+    //Buforowanie - Wyrównywanie dzia³ania programu
+    sf::Clock zegar;
+    // run the program as long as the window is open
+    while (window.isOpen())
+    {zegar.restart();
+        // check all the window's events that were triggered since the last iteration of the loop
+        sf::Event event;
+        while (window.pollEvent(event))
         {
-            if( event.type == sf::Event::Closed )
-                 okno.close();
-             if(event.type==sf::Event::KeyPressed&&event.key.code == sf::Keyboard::Escape)
-                    okno.close();
+            // "close requested" event: we close the window
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+        // clear the window with black color
+        // end the current frame
 
 
+        //czyszczenie
+        window.clear();
 
-        } //
-        okno.clear();
+        //Rysowanie planszy
+        for(int i=0;i<X_OKNA;i+=10)
+            for(int j=0;j<Y_OKNA;j++){
+                if(pola[i][j]==1){
+                    punkt.setPosition(i,j);
+                    window.draw(punkt);}
+                }
+        //Wywo³anie fizyki
+        gracz1.dzialaj();
+        //Rysowanie gracza
+        window.draw(gracz1.ksztalt);
+        //Rysowanie ekranu
+        window.display();
 
 
-    while(stoper.getElapsedTime().asMilliseconds()<20){}
-    } //while
+        while(zegar.getElapsedTime().asMilliseconds()<10){}
+    }
+
     return 0;
 }
