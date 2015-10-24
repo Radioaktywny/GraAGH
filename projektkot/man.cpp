@@ -12,18 +12,17 @@ class player {
     public:
     int x=400;
     int y=20;
-    int ruch;
+    int ruch=0;
     sf::CircleShape ksztalt =sf::CircleShape (50,10);
 
     // Fizyka
     void dzialaj(){
         if(pola[x][y+100]==0)
             y++;
+            x=x+ruch;
             ksztalt.setPosition(x,y);
         }
-};
-
-//Funkcja G³ówna
+};//Funkcja G³ówna
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(800, 600,32), "My window");
@@ -49,7 +48,8 @@ int main()
     player gracz1;
 
 
-    //Buforowanie - Wyrównywanie dzia³ania programu
+    //Buforowanie - Wyrównywanie dzia³ania progif( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape )
+
     sf::Clock zegar;
     // run the program as long as the window is open
     while (window.isOpen())
@@ -61,6 +61,16 @@ int main()
             // "close requested" event: we close the window
             if (event.type == sf::Event::Closed)
                 window.close();
+            if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape )
+                 window.close();
+            if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Left )
+                 gracz1.ruch=-1;
+            if( event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Left )
+                 gracz1.ruch= 0;
+            if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Right )
+                 gracz1.ruch= 1;
+            if( event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Right )
+                 gracz1.ruch= 0;
         }
         // clear the window with black color
         // end the current frame
