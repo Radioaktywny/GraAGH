@@ -42,7 +42,7 @@ int skok=0;
 };//Funkcja G³ówna
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(X_OKNA, Y_OKNA,32), "My window",sf::Style::Fullscreen);
+    sf::RenderWindow window(sf::VideoMode(X_OKNA, Y_OKNA,32), "My window");
 
     // Sprajt :D  Mapy
     sf::CircleShape punkt(9,4);
